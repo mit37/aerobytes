@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import './Menu.css';
@@ -10,6 +10,7 @@ function Menu() {
   const [searchParams] = useSearchParams();
   const locationId = searchParams.get('location');
   const navigate = useNavigate();
+  const lastFetchedLocationRef = useRef(null);
 
   const [diningLocations, setDiningLocations] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState(null);
@@ -120,13 +121,18 @@ function Menu() {
 
   useEffect(() => {
     if (locationId) {
-      fetchMenuItems(locationId);
+      // Only fetch if this is a different location than last time
+      if (lastFetchedLocationRef.current !== locationId) {
+        lastFetchedLocationRef.current = locationId;
+        fetchMenuItems(locationId);
+      }
     } else if (diningLocations.length > 0) {
       // Default to first location if none selected
       const firstLocation = diningLocations[0];
       navigate(`/menu?location=${firstLocation.id}`, { replace: true });
     }
-  }, [locationId, diningLocations, fetchMenuItems, navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locationId]); // Only depend on locationId to prevent constant reloads
 
   const handleLocationChange = (newLocationId) => {
     navigate(`/menu?location=${newLocationId}`);

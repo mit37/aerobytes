@@ -6,7 +6,7 @@
 class Cache {
   constructor() {
     this.cache = new Map();
-    this.defaultTTL = 7 * 60 * 1000; // 7 minutes in milliseconds
+    this.defaultTTL = 2 * 60 * 60 * 1000; // 2 hours in milliseconds (was 7 minutes)
   }
 
   /**
