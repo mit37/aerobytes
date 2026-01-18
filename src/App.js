@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { UserProvider } from './context/UserContext';
 import Navbar from './components/Navbar';
+import HealthBot from './components/HealthBot';
 import Home from './pages/Home';
 import Menu from './pages/Menu';
 import Cart from './pages/Cart';
@@ -20,6 +21,7 @@ function App() {
         <Router>
           <div className="App">
             <Navbar />
+            <HealthBot />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/menu" element={<Menu />} />
