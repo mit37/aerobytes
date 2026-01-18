@@ -240,7 +240,13 @@ app.get('/api/orders', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// Only start server if not running on Vercel
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+// Export app for Vercel serverless functions
+module.exports = app;
 
