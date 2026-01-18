@@ -1,0 +1,256 @@
+.menu {
+  min-height: 100vh;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.menu-header h1 {
+  color: #333;
+  margin: 0;
+}
+
+.location-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.location-selector label {
+  font-weight: 500;
+  color: #666;
+}
+
+.location-selector select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: white;
+  cursor: pointer;
+}
+
+.location-selector select:hover {
+  border-color: #667eea;
+}
+
+.menu-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.menu-item-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.menu-item-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.menu-item-info {
+  margin-bottom: 1rem;
+}
+
+.menu-item-info h3 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.item-price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #667eea;
+  margin: 0.5rem 0;
+}
+
+.calories {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.availability {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+.availability.available {
+  background-color: #4caf50;
+  color: white;
+}
+
+.availability.unavailable {
+  background-color: #9e9e9e;
+  color: white;
+}
+
+.add-to-cart-btn {
+  padding: 0.75rem 1.5rem;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  margin-top: auto;
+}
+
+.add-to-cart-btn:hover:not(:disabled) {
+  background-color: #5568d3;
+}
+
+.add-to-cart-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.loading,
+.error,
+.no-data {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.loading-note {
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: 0.5rem;
+}
+
+.spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #667eea;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 1rem auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.progress-bar-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 1rem auto;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  height: 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.3);
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+  z-index: 1;
+}
+
+.error {
+  color: #f44336;
+}
+
+.error button {
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.error button:hover {
+  background-color: #5568d3;
+}
+
+@media (max-width: 768px) {
+  .menu-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .menu-items {
+    grid-template-columns: 1fr;
+  }
+}
+
+.return-home-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #4a5568;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 1rem;
+}
+
+.return-home-btn:hover {
+  background-color: #2d3748;
+}
+
+.placeholder-text {
+  color: #718096;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+  line-height: 1.4;
+}
+
+.placeholder-card {
+  border: 1px dashed #cbd5e0 !important;
+  background-color: #f7fafc !important;
+}

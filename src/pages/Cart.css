@@ -1,0 +1,122 @@
+.cart {
+  min-height: 100vh;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cart h1 {
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 3rem;
+}
+
+.empty-cart button,
+.browse-btn {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.empty-cart button:hover,
+.browse-btn:hover {
+  background-color: #5568d3;
+}
+
+.cart-items {
+  margin-bottom: 2rem;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.item-info h3 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.item-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.item-controls button {
+  padding: 0.5rem 1rem;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.remove-btn {
+  background-color: #f44336 !important;
+}
+
+.item-total {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.cart-summary {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.total h2 {
+  margin: 0 0 0.5rem 0;
+  color: #333;
+}
+
+.solana-badge {
+  color: #14f195;
+  font-weight: 500;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.cart-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.cart-actions button {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.cart-actions button:first-child {
+  background-color: #ccc;
+}
+
+.checkout-btn {
+  background-color: #667eea !important;
+  color: white !important;
+}
+

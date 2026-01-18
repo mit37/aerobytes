@@ -1,0 +1,159 @@
+.home {
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.home-hero {
+  text-align: center;
+  padding: 3rem 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+.home-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.home-hero p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.home-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.home-content h2 {
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.location-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.location-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
+}
+
+.location-card h3 {
+  margin: 0 0 1rem 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.status {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  width: fit-content;
+}
+
+.status.open {
+  background-color: #4caf50;
+  color: white;
+}
+
+.status.closed {
+  background-color: #f44336;
+  color: white;
+}
+
+.drone-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: #2196f3;
+  color: white;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  width: fit-content;
+}
+
+.menu-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: #667eea;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.menu-link:hover {
+  color: #5568d3;
+  text-decoration: underline;
+}
+
+.loading, .error, .no-data {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.loading-note {
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: 0.5rem;
+}
+
+.spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #667eea;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 1rem auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error {
+  color: #f44336;
+}
+
+.error button {
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.error button:hover {
+  background-color: #5568d3;
+}
+

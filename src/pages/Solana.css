@@ -1,0 +1,117 @@
+.solana-page {
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.solana-hero {
+  text-align: center;
+  padding: 3rem 0;
+  margin-bottom: 3rem;
+}
+
+.solana-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.solana-hero .subtitle {
+  font-size: 1.3rem;
+  opacity: 0.95;
+}
+
+.solana-content {
+  max-width: 900px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.solana-section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.solana-section:last-of-type {
+  border-bottom: none;
+}
+
+.solana-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.solana-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  opacity: 0.95;
+}
+
+.feature-box {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  border-left: 4px solid #14f195;
+}
+
+.feature-box strong {
+  color: #14f195;
+  font-size: 1.1rem;
+}
+
+.solana-section.highlight {
+  background: rgba(20, 241, 149, 0.2);
+  padding: 2rem;
+  border-radius: 15px;
+  border: 2px solid rgba(20, 241, 149, 0.3);
+}
+
+.solana-cta {
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.cta-button {
+  display: inline-block;
+  background: #14f195;
+  color: #000;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(20, 241, 149, 0.3);
+}
+
+.cta-button:hover {
+  background: #12d882;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(20, 241, 149, 0.4);
+}
+
+@media (max-width: 768px) {
+  .solana-hero h1 {
+    font-size: 2rem;
+  }
+  
+  .solana-content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .solana-section h2 {
+    font-size: 1.5rem;
+  }
+}
+

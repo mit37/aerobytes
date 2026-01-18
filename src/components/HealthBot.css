@@ -1,0 +1,241 @@
+/* Floating Toggle Button */
+.healthbot-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.healthbot-toggle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.6);
+}
+
+.healthbot-toggle-text {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* Chat Container */
+.healthbot-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 400px;
+  height: 600px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  z-index: 1001;
+  overflow: hidden;
+}
+
+.healthbot-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.healthbot-header-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.healthbot-icon {
+  font-size: 32px;
+}
+
+.healthbot-header-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.healthbot-header-info p {
+  margin: 4px 0 0 0;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.healthbot-close {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.healthbot-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Messages Area */
+.healthbot-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.healthbot-message {
+  display: flex;
+  max-width: 80%;
+}
+
+.healthbot-message.user {
+  align-self: flex-end;
+}
+
+.healthbot-message.bot {
+  align-self: flex-start;
+}
+
+.healthbot-message-content {
+  padding: 12px 16px;
+  border-radius: 16px;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+.healthbot-message.user .healthbot-message-content {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.healthbot-message.bot .healthbot-message-content {
+  background: white;
+  color: #333;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Typing Indicator */
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+}
+
+.typing-indicator span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #667eea;
+  animation: typing 1.4s infinite;
+}
+
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  30% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+}
+
+/* Input Form */
+.healthbot-input-form {
+  display: flex;
+  padding: 16px;
+  background: white;
+  border-top: 1px solid #e0e0e0;
+  gap: 8px;
+}
+
+.healthbot-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 24px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.healthbot-input:focus {
+  border-color: #667eea;
+}
+
+.healthbot-input:disabled {
+  background: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.healthbot-send {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.healthbot-send:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.healthbot-send:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .healthbot-container {
+    width: calc(100vw - 40px);
+    height: calc(100vh - 40px);
+    max-height: 600px;
+  }
+
+  .healthbot-toggle {
+    width: 56px;
+    height: 56px;
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
