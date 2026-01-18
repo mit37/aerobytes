@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const { getDiningLocations, getMenuItems } = require('./backend/scraper');
 const { MOCK_LOCATIONS, getMockMenuItems } = require('./backend/mockData');
 const { saveOrder, getOrder, getAllOrders, getOrdersByUser, updateOrderStatus } = require('./backend/orders');
 const { createOrUpdateUser, getUserByEmail } = require('./backend/users');
@@ -12,12 +13,29 @@ app.use(cors());
 app.use(express.json());
 
 // API Routes
-app.get('/api/dining-locations', (req, res) => {
+app.get('/api/dining-locations', async (req, res) => {
   try {
-    console.log('API: Returning dining locations');
-    res.json(MOCK_LOCATIONS);
+    console.log('API: Fetching dining locations (scraping if needed)...');
+    // Try to scrape first, fallback to mock data if scraping fails
+    let locations = [];
+    try {
+      locations = await getDiningLocations(false); // Use cache if available
+      console.log(`API: Scraped/retrieved ${locations.length} dining locations`);
+    } catch (scrapeError) {
+      console.error('Scraping failed, using mock data:', scrapeError.message);
+      locations = MOCK_LOCATIONS;
+    }
+    
+    // Ensure we always return something
+    if (!locations || locations.length === 0) {
+      console.log('No locations from scraper, using mock data');
+      locations = MOCK_LOCATIONS;
+    }
+    
+    res.json(locations);
   } catch (error) {
     console.error('Error:', error);
+    // Fallback to mock data on any error
     res.json(MOCK_LOCATIONS);
   }
 });
@@ -60,19 +78,31 @@ function getCurrentMealPeriod() {
   }
 }
 
-app.get('/api/menu-items', (req, res) => {
+app.get('/api/menu-items', async (req, res) => {
   try {
-    const { locationId } = req.query;
+    const { locationId, locationName } = req.query;
 
     if (!locationId) {
       return res.status(400).json({ error: 'locationId is required', menuItems: [] });
     }
 
-    console.log(`API: Returning menu items for location ${locationId}`);
-    // Get all items (mock or scraped)
-    // In a real scenario with scraped data, we'd fetch from scraper module or DB
-    // For now using mockData with filtering
-    const allMenuItems = getMockMenuItems(locationId);
+    console.log(`API: Fetching menu items for location ${locationId} (scraping if needed)...`);
+    
+    // Try to scrape first, fallback to mock data if scraping fails
+    let allMenuItems = [];
+    try {
+      allMenuItems = await getMenuItems(locationId, locationName, null, false); // Use cache if available
+      console.log(`API: Scraped/retrieved ${allMenuItems.length} menu items for location ${locationId}`);
+    } catch (scrapeError) {
+      console.error('Scraping failed, using mock data:', scrapeError.message);
+      allMenuItems = getMockMenuItems(locationId);
+    }
+    
+    // Ensure we always return something
+    if (!allMenuItems || allMenuItems.length === 0) {
+      console.log('No menu items from scraper, using mock data');
+      allMenuItems = getMockMenuItems(locationId);
+    }
 
     const currentPeriod = getCurrentMealPeriod();
     console.log(`Current Time Period: ${currentPeriod}`);
