@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './Checkout.css';
 
 // Use relative URLs for production (Vercel), absolute for local development
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+const API_BASE_URL = process.env.NODE_ENV === 'production' ? '' : (process.env.REACT_APP_API_URL || 'http://localhost:3001');
 
 // Convert USD to SOL (approximate rate: 1 SOL ≈ $100)
 const USD_TO_SOL_RATE = 100;

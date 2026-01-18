@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 // Use relative URLs for production (Vercel), absolute for local development
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+const API_BASE_URL = process.env.NODE_ENV === 'production' ? '' : (process.env.REACT_APP_API_URL || 'http://localhost:3001');
 
 function Home() {
   const [diningLocations, setDiningLocations] = useState([]);
@@ -20,19 +20,19 @@ function Home() {
       setLoading(true);
       setError(null);
       console.log('Fetching dining locations from:', `${API_BASE_URL}/api/dining-locations`);
-      
+
       const response = await fetch(`${API_BASE_URL}/api/dining-locations`);
-      
+
       if (!response.ok) {
         const errorText = await response.text();
         console.error('Response not OK:', response.status, errorText);
         throw new Error(`Failed to fetch dining locations: ${response.status}`);
       }
-      
+
       const data = await response.json();
       console.log('Received dining locations:', data);
       console.log('Number of locations:', Array.isArray(data) ? data.length : 'Not an array');
-      
+
       if (Array.isArray(data)) {
         if (data.length > 0) {
           setDiningLocations(data);
@@ -68,7 +68,7 @@ function Home() {
 
       <div className="home-content">
         <h2>Select a Dining Location</h2>
-        
+
         {loading && (
           <div className="loading">
             <p>Loading dining locations...</p>
@@ -107,9 +107,9 @@ function Home() {
                   )}
                 </div>
                 {location.url && (
-                  <a 
-                    href={location.url} 
-                    target="_blank" 
+                  <a
+                    href={location.url}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="menu-link"
                     onClick={(e) => e.stopPropagation()}
