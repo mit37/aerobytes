@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCart } from '../context/CartContext';
 import './Home.css';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
@@ -10,7 +9,6 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { getTotalItems } = useCart();
 
   useEffect(() => {
     fetchDiningLocations();

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import './Menu.css';
@@ -18,21 +18,7 @@ function Menu() {
   const { addToCart, setMealPrice } = useCart();
   const [currentPrice, setCurrentPrice] = useState(0);
 
-  useEffect(() => {
-    fetchDiningLocations();
-  }, []);
-
-  useEffect(() => {
-    if (locationId) {
-      fetchMenuItems(locationId);
-    } else if (diningLocations.length > 0) {
-      // Default to first location if none selected
-      const firstLocation = diningLocations[0];
-      navigate(`/menu?location=${firstLocation.id}`, { replace: true });
-    }
-  }, [locationId, diningLocations]);
-
-  const fetchDiningLocations = async () => {
+  const fetchDiningLocations = useCallback(async () => {
     try {
       const response = await fetch(`${API_BASE_URL}/api/dining-locations`);
 
@@ -55,9 +41,9 @@ function Menu() {
       setError('Failed to load dining locations.');
       setDiningLocations([]);
     }
-  };
+  }, [locationId]);
 
-  const fetchMenuItems = async (locId) => {
+  const fetchMenuItems = useCallback(async (locId) => {
     try {
       setLoading(true);
       setError(null);
@@ -109,7 +95,21 @@ function Menu() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [diningLocations, setMealPrice]);
+
+  useEffect(() => {
+    fetchDiningLocations();
+  }, [fetchDiningLocations]);
+
+  useEffect(() => {
+    if (locationId) {
+      fetchMenuItems(locationId);
+    } else if (diningLocations.length > 0) {
+      // Default to first location if none selected
+      const firstLocation = diningLocations[0];
+      navigate(`/menu?location=${firstLocation.id}`, { replace: true });
+    }
+  }, [locationId, diningLocations, fetchMenuItems, navigate]);
 
   const handleLocationChange = (newLocationId) => {
     navigate(`/menu?location=${newLocationId}`);
