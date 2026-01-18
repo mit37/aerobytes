@@ -1,0 +1,62 @@
+.profile {
+  min-height: 100vh;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.profile h1 {
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.not-logged-in {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.not-logged-in button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.profile-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.profile-info h2 {
+  margin: 0 0 1rem 0;
+  color: #333;
+}
+
+.profile-details {
+  margin: 1.5rem 0;
+}
+
+.profile-details p {
+  margin: 0.5rem 0;
+  color: #666;
+}
+
+.profile-actions button {
+  padding: 0.75rem 1.5rem;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
