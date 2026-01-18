@@ -105,7 +105,7 @@ function OrderTracking() {
                       </div>
                       <div className="history-summary">
                         <span>{hist.items.length} items</span>
-                        <span>${hist.total.toFixed(2)}</span>
+                        <span>{(hist.total / 100).toFixed(4)} SOL</span>
                         <span className="status-tag" style={{ color: getStatusColor(hist.status) }}>
                           {getStatusText(hist.status)}
                         </span>
@@ -171,12 +171,12 @@ function OrderTracking() {
                   <div key={item.id} className="order-item">
                     <span className="item-name">{item.name}</span>
                     <span className="item-quantity">x{item.quantity}</span>
-                    <span className="item-price">${(item.price * item.quantity).toFixed(2)}</span>
+                    <span className="item-price">{(item.price * item.quantity / 100).toFixed(4)} SOL</span>
                   </div>
                 ))}
               </div>
               <div className="order-total">
-                <strong>Total: ${order.total.toFixed(2)}</strong>
+                <strong>Total: {(order.total / 100).toFixed(4)} SOL</strong>
               </div>
             </div>
 

@@ -107,11 +107,12 @@ function Checkout() {
           {items.map((item) => (
             <div key={item.id} className="order-item">
               <span>{item.name} x {item.quantity}</span>
-              <span>${((item.price || 0) * item.quantity).toFixed(2)}</span>
+              <span>{((item.price || 0) * item.quantity / USD_TO_SOL_RATE).toFixed(4)} SOL</span>
             </div>
           ))}
           <div className="order-total">
-            <strong>Total: ${getTotalPrice().toFixed(2)}</strong>
+            <strong>Total: {getTotalPriceInSOL().toFixed(4)} SOL</strong>
+            <p className="payment-method">💎 Payment via Solana Blockchain</p>
           </div>
         </div>
         <div className="checkout-form">
@@ -198,12 +199,16 @@ function Checkout() {
                 rows="3"
               />
             </div>
+            <div className="solana-payment-info">
+              <p>💎 This order will be processed using Solana blockchain</p>
+              <p className="solana-benefits">Instant • Low Fees • Secure</p>
+            </div>
             <button
               type="submit"
               className="place-order-btn"
               disabled={isSubmitting || items.length === 0}
             >
-              {isSubmitting ? 'Placing Order...' : 'Place Order'}
+              {isSubmitting ? 'Processing Payment...' : 'Pay with Solana'}
             </button>
           </form>
         </div>

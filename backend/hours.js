@@ -124,18 +124,11 @@ function isLocationOpen(locationId) {
     return true;
   }
 
-  // TEMPORARY: Set to Monday 7:30 AM for local testing
-  // TODO: Remove this and use actual time for production
-  const dayOfWeek = 1; // Monday
-  const currentTime = 7.5; // 7:30 AM
-  
-  /* Original time-based logic (commented out for testing):
   const now = new Date();
   const dayOfWeek = now.getDay(); // 0=Sunday, 1=Monday, ..., 6=Saturday
   const currentHour = now.getHours();
   const currentMinute = now.getMinutes();
   const currentTime = currentHour + (currentMinute / 60);
-  */
 
   const dayHours = hours[dayOfWeek.toString()];
   if (!dayHours) {

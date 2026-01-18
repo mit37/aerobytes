@@ -34,6 +34,9 @@ const Navbar = () => {
           <Link to="/menu" className="navbar-link" onClick={() => setIsMobileMenuOpen(false)}>
             Menu
           </Link>
+          <Link to="/solana" className="navbar-link" onClick={() => setIsMobileMenuOpen(false)}>
+            Why Solana
+          </Link>
           <Link to="/track-order" className="navbar-link" onClick={() => setIsMobileMenuOpen(false)}>
             Track Order
           </Link>

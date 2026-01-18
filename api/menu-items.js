@@ -12,11 +12,6 @@ const MEAL_PRICES = {
 
 // Helper to get current meal period based on time
 function getCurrentMealPeriod() {
-  // TEMPORARY: Set to 7:30 AM for local testing
-  // TODO: Remove this and use actual time for production
-  return 'Breakfast'; // 7:30 AM is during Breakfast hours (7-11:30 AM)
-  
-  /* Original time-based logic (commented out for testing):
   const now = new Date();
   const hour = now.getHours();
   const minute = now.getMinutes();
@@ -33,7 +28,6 @@ function getCurrentMealPeriod() {
   } else {
     return 'Closed';
   }
-  */
 }
 
 module.exports = async (req, res) => {

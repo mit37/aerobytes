@@ -61,11 +61,6 @@ const MEAL_PRICES = {
 
 // Helper to get current meal period based on time
 function getCurrentMealPeriod() {
-  // TEMPORARY: Set to 7:30 AM for local testing
-  // TODO: Remove this and use actual time for production
-  return 'Breakfast'; // 7:30 AM is during Breakfast hours (7-11:30 AM)
-  
-  /* Original time-based logic (commented out for testing):
   const now = new Date();
   // Convert to PST/PDT (California time)
   // We'll use a simple offset or just local server time for now, assuming server runs in relevant timezone or we want simulation
@@ -92,7 +87,6 @@ function getCurrentMealPeriod() {
     // For now, let's default to closed or all items
     return 'Closed';
   }
-  */
 }
 
 app.get('/api/menu-items', async (req, res) => {
@@ -101,6 +95,20 @@ app.get('/api/menu-items', async (req, res) => {
 
     if (!locationId) {
       return res.status(400).json({ error: 'locationId is required', menuItems: [] });
+    }
+
+    // Check if location is open
+    const isOpen = isLocationOpen(locationId);
+    
+    if (!isOpen) {
+      return res.json({
+        menuItems: [],
+        currentPeriod: 'Closed',
+        currentPrice: 0,
+        progress: 100,
+        message: 'This dining location is currently closed.',
+        isOpen: false
+      });
     }
 
     console.log(`API: Fetching menu items for location ${locationId} (scraping if needed)...`);

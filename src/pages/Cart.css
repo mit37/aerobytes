@@ -86,8 +86,15 @@
 }
 
 .total h2 {
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 0.5rem 0;
   color: #333;
+}
+
+.solana-badge {
+  color: #14f195;
+  font-weight: 500;
+  margin: 0;
+  font-size: 0.9rem;
 }
 
 .cart-actions {

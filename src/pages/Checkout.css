@@ -38,6 +38,31 @@
   font-size: 1.2rem;
 }
 
+.payment-method {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #14f195;
+  font-weight: 500;
+}
+
+.solana-payment-info {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.solana-payment-info p {
+  margin: 0.25rem 0;
+}
+
+.solana-benefits {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
 .checkout-form {
   background: white;
   padding: 2rem;

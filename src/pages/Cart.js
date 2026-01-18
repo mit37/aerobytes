@@ -4,10 +4,17 @@ import { useUser } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import './Cart.css';
 
+// Convert USD to SOL (approximate rate: 1 SOL ≈ $100)
+const USD_TO_SOL_RATE = 100;
+
 function Cart() {
   const { items, removeFromCart, updateQuantity, clearCart, getTotalPrice } = useCart();
   const { user } = useUser();
   const navigate = useNavigate();
+
+  const getTotalPriceInSOL = () => {
+    return getTotalPrice() / USD_TO_SOL_RATE;
+  };
 
   const handleCheckout = () => {
     if (!user) {
@@ -53,7 +60,8 @@ function Cart() {
       </div>
       <div className="cart-summary">
         <div className="total">
-          <h2>Meal Bundle Total: ${getTotalPrice().toFixed(2)}</h2>
+          <h2>Meal Bundle Total: {getTotalPriceInSOL().toFixed(4)} SOL</h2>
+          <p className="solana-badge">💎 Powered by Solana</p>
         </div>
         <div className="cart-actions">
           <button onClick={clearCart}>Clear Cart</button>

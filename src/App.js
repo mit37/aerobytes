@@ -10,6 +10,7 @@ import Checkout from './pages/Checkout';
 import OrderTracking from './pages/OrderTracking';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
+import Solana from './pages/Solana';
 import './App.css';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
               <Route path="/track-order" element={<OrderTracking />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/solana" element={<Solana />} />
             </Routes>
           </div>
         </Router>

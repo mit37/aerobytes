@@ -55,10 +55,19 @@ function Menu() {
       // Build URL
       const url = `${API_BASE_URL}/api/menu-items?locationId=${locId}`;
 
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        // Add this to handle local network requests
+        mode: 'cors',
+      });
 
       if (!response.ok) {
-        throw new Error('Failed to fetch menu items');
+        const errorText = await response.text();
+        console.error('Menu items response not OK:', response.status, errorText);
+        throw new Error(`Failed to fetch menu items: ${response.status}`);
       }
 
       const data = await response.json();
@@ -206,8 +215,8 @@ function Menu() {
       {!loading && !error && menuItems.length > 0 && (
         <>
           <div className="pricing-info" style={{ textAlign: 'center', margin: '1rem 0', padding: '1rem', backgroundColor: '#e6fffa', borderRadius: '8px' }}>
-            <h2>Unlimited Food Access: ${currentPrice.toFixed(2)}</h2>
-            <p>Select up to 4 items per order</p>
+            <h2>Unlimited Food Access: {(currentPrice / 100).toFixed(4)} SOL</h2>
+            <p>Select up to 4 items per order • 💎 Powered by Solana</p>
           </div>
           <div className="menu-items">
             {menuItems.map((item) => (
