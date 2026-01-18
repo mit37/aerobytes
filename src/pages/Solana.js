@@ -91,7 +91,7 @@ function Solana() {
         </section>
 
         <div className="solana-cta">
-          <Link to="/menu" className="cta-button">
+          <Link to="/" className="cta-button">
             Start Ordering with Solana →
           </Link>
         </div>
