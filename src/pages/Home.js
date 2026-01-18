@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+// Use relative URLs for production (Vercel), absolute for local development
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
 
 function Home() {
   const [diningLocations, setDiningLocations] = useState([]);
@@ -61,7 +62,7 @@ function Home() {
   return (
     <div className="home">
       <div className="home-hero">
-        <h1>Drone Food Delivery</h1>
+        <h1>SlugBites</h1>
         <p>Fast, reliable food delivery from UCSC dining halls</p>
       </div>
 
@@ -102,7 +103,7 @@ function Home() {
                     {location.is_open ? 'Open' : 'Closed'}
                   </span>
                   {location.supports_drone && (
-                    <span className="drone-badge">🚁 Drone Delivery Available</span>
+                    <span className="drone-badge">🍌 Slug Delivery Available</span>
                   )}
                 </div>
                 {location.url && (

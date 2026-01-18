@@ -3,7 +3,8 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import './Menu.css';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+// Use relative URLs for production (Vercel), absolute for local development
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
 
 function Menu() {
   const [searchParams] = useSearchParams();
@@ -178,7 +179,7 @@ function Menu() {
           <div className="menu-item-card placeholder-card">
             <div className="menu-item-info">
               <h3>Menu items coming soon</h3>
-              <p className="placeholder-text">We're getting things ready! Check back later for fresh drone-delivered meals.</p>
+              <p className="placeholder-text">We're getting things ready! Check back later for fresh slug-delivered meals.</p>
               <p className="item-price">Not Available Yet</p>
             </div>
             <button

@@ -23,8 +23,8 @@ const Navbar = () => {
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-          <span className="logo-icon">🚁</span>
-          <span className="logo-text">SkyBites</span>
+          <span className="logo-icon">🍌</span>
+          <span className="logo-text">SlugBites</span>
         </Link>
 
         <div className={`navbar-menu ${isMobileMenuOpen ? 'active' : ''}`}>

@@ -3,7 +3,8 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useUser } from '../context/UserContext';
 import './OrderTracking.css';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+// Use relative URLs for production (Vercel), absolute for local development
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
 
 function OrderTracking() {
   const [searchParams] = useSearchParams();

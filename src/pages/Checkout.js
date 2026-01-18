@@ -4,7 +4,8 @@ import { useUser } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import './Checkout.css';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+// Use relative URLs for production (Vercel), absolute for local development
+const API_BASE_URL = process.env.REACT_APP_API_URL || '';
 
 function Checkout() {
   const { items, getTotalPrice, clearCart } = useCart();
