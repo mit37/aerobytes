@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './Home.css';
 
 // Use relative URLs for production (Vercel), absolute for local development
-const API_BASE_URL = process.env.REACT_APP_API_URL || '';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
 function Home() {
   const [diningLocations, setDiningLocations] = useState([]);
