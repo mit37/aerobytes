@@ -80,16 +80,6 @@ function Solana() {
           </p>
         </section>
 
-        <section className="solana-section">
-          <h2>🏆 MLH Best Use of Solana Prize Track</h2>
-          <p>
-            SlugBites is built for the <strong>MLH Best Use of Solana</strong> prize track, demonstrating 
-            how Solana's infrastructure can power real-world consumer applications. We're showing how 
-            blockchain technology can solve everyday problems—making food delivery faster, cheaper, and 
-            more accessible for students.
-          </p>
-        </section>
-
         <section className="solana-section highlight">
           <h2>💡 The Future of Payments</h2>
           <p>
