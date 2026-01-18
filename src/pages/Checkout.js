@@ -5,13 +5,19 @@ import { useNavigate } from 'react-router-dom';
 import './Checkout.css';
 
 // Use relative URLs for production (Vercel), absolute for local development
-// Use relative URLs for production (Vercel), absolute for local development
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+
+// Convert USD to SOL (approximate rate: 1 SOL ≈ $100)
+const USD_TO_SOL_RATE = 100;
 
 function Checkout() {
   const { items, getTotalPrice, clearCart } = useCart();
   const { user } = useUser();
   const navigate = useNavigate();
+
+  const getTotalPriceInSOL = () => {
+    return getTotalPrice() / USD_TO_SOL_RATE;
+  };
   const [formData, setFormData] = useState({
     name: user?.name || '',
     email: user?.email || '',
