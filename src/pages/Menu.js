@@ -64,6 +64,13 @@ function Menu() {
       const data = await response.json();
       console.log(`Received ${data.menuItems?.length || 0} menu items from backend`);
 
+      // Check if location is closed
+      if (data.message && data.message.includes('closed')) {
+        setMenuItems([]);
+        setError('This dining location is currently closed.');
+        return;
+      }
+
       // Set price from backend
       if (data.currentPrice) {
         setCurrentPrice(data.currentPrice);
@@ -174,13 +181,17 @@ function Menu() {
         </div>
       )}
 
-      {!loading && !error && menuItems.length === 0 && (
+      {!loading && menuItems.length === 0 && (
         <div className="menu-items">
           <div className="menu-item-card placeholder-card">
             <div className="menu-item-info">
-              <h3>Menu items coming soon</h3>
-              <p className="placeholder-text">We're getting things ready! Check back later for fresh slug-delivered meals.</p>
-              <p className="item-price">Not Available Yet</p>
+              <h3>{error && error.includes('closed') ? 'Dining Location Closed' : 'Menu items coming soon'}</h3>
+              <p className="placeholder-text">
+                {error && error.includes('closed') 
+                  ? 'This dining location is currently closed. Please check back during operating hours.'
+                  : "We're getting things ready! Check back later for fresh slug-delivered meals."}
+              </p>
+              <p className="item-price">{error && error.includes('closed') ? 'Closed' : 'Not Available Yet'}</p>
             </div>
             <button
               className="return-home-btn"

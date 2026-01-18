@@ -1,5 +1,6 @@
 const { getMenuItems } = require('../backend/scraper');
 const { getMockMenuItems } = require('../backend/mockData');
+const { isLocationOpen } = require('../backend/hours');
 
 const MEAL_PRICES = {
   'Breakfast': 12.60,
@@ -11,6 +12,11 @@ const MEAL_PRICES = {
 
 // Helper to get current meal period based on time
 function getCurrentMealPeriod() {
+  // TEMPORARY: Set to 7:30 AM for local testing
+  // TODO: Remove this and use actual time for production
+  return 'Breakfast'; // 7:30 AM is during Breakfast hours (7-11:30 AM)
+  
+  /* Original time-based logic (commented out for testing):
   const now = new Date();
   const hour = now.getHours();
   const minute = now.getMinutes();
@@ -27,6 +33,7 @@ function getCurrentMealPeriod() {
   } else {
     return 'Closed';
   }
+  */
 }
 
 module.exports = async (req, res) => {
@@ -44,6 +51,20 @@ module.exports = async (req, res) => {
 
     if (!locationId) {
       return res.status(400).json({ error: 'locationId is required', menuItems: [] });
+    }
+
+    // Check if location is open
+    const isOpen = isLocationOpen(locationId);
+    
+    if (!isOpen) {
+      return res.json({
+        menuItems: [],
+        currentPeriod: 'Closed',
+        currentPrice: 0,
+        progress: 100,
+        message: 'This dining location is currently closed.',
+        isOpen: false
+      });
     }
 
     console.log(`API: Fetching menu items for location ${locationId} (scraping if needed)...`);

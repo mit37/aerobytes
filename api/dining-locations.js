@@ -1,5 +1,6 @@
 const { getDiningLocations } = require('../backend/scraper');
 const { MOCK_LOCATIONS } = require('../backend/mockData');
+const { isLocationOpen } = require('../backend/hours');
 
 module.exports = async (req, res) => {
   // Set CORS headers
@@ -29,11 +30,21 @@ module.exports = async (req, res) => {
       locations = MOCK_LOCATIONS;
     }
     
+    // Update is_open status based on current hours
+    locations = locations.map(location => ({
+      ...location,
+      is_open: isLocationOpen(location.id)
+    }));
+    
     res.json(locations);
   } catch (error) {
     console.error('Error:', error);
-    // Fallback to mock data on any error
-    res.json(MOCK_LOCATIONS);
+    // Fallback to mock data on any error, but still update is_open
+    const locations = MOCK_LOCATIONS.map(location => ({
+      ...location,
+      is_open: isLocationOpen(location.id)
+    }));
+    res.json(locations);
   }
 };
 

@@ -4,6 +4,7 @@ const { getDiningLocations, getMenuItems } = require('./backend/scraper');
 const { MOCK_LOCATIONS, getMockMenuItems } = require('./backend/mockData');
 const { saveOrder, getOrder, getAllOrders, getOrdersByUser, updateOrderStatus } = require('./backend/orders');
 const { createOrUpdateUser, getUserByEmail } = require('./backend/users');
+const { isLocationOpen } = require('./backend/hours');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -32,11 +33,21 @@ app.get('/api/dining-locations', async (req, res) => {
       locations = MOCK_LOCATIONS;
     }
     
+    // Update is_open status based on current hours
+    locations = locations.map(location => ({
+      ...location,
+      is_open: isLocationOpen(location.id)
+    }));
+    
     res.json(locations);
   } catch (error) {
     console.error('Error:', error);
-    // Fallback to mock data on any error
-    res.json(MOCK_LOCATIONS);
+    // Fallback to mock data on any error, but still update is_open
+    const locations = MOCK_LOCATIONS.map(location => ({
+      ...location,
+      is_open: isLocationOpen(location.id)
+    }));
+    res.json(locations);
   }
 });
 
@@ -50,6 +61,11 @@ const MEAL_PRICES = {
 
 // Helper to get current meal period based on time
 function getCurrentMealPeriod() {
+  // TEMPORARY: Set to 7:30 AM for local testing
+  // TODO: Remove this and use actual time for production
+  return 'Breakfast'; // 7:30 AM is during Breakfast hours (7-11:30 AM)
+  
+  /* Original time-based logic (commented out for testing):
   const now = new Date();
   // Convert to PST/PDT (California time)
   // We'll use a simple offset or just local server time for now, assuming server runs in relevant timezone or we want simulation
@@ -76,6 +92,7 @@ function getCurrentMealPeriod() {
     // For now, let's default to closed or all items
     return 'Closed';
   }
+  */
 }
 
 app.get('/api/menu-items', async (req, res) => {
